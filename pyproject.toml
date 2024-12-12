@@ -1,0 +1,19 @@
+[project]
+name = "python-package-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "ruff>=0.8.3",
+]
+
+[tool.uv.workspace]
+members = ["python-package-template"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+publish-url = "https://artifactory.huit.harvard.edu/artifactory/api/pypi/lts-python"
