@@ -125,16 +125,24 @@ Select the lts-python repository
 
 Generate a token
 
-Keep this token in a safe place
-
-Optionally, save it in the .env file which is present in .gitignore and will not be committed to the repository
-
 ### Set environment variables
+
+Update the .env file
 
 Set the username to your Artifactory username and set the password to the token value generated in JFrog Artifactory.
 
-export UV_PUBLISH_USERNAME={artifactory username}
-export UV_PUBLISH_PASSWORD={token generated in JFrog Artifactory}
+```
+UV_PUBLISH_USERNAME={artifactory username}
+UV_PUBLISH_PASSWORD={token generated in JFrog Artifactory}
+```
+
+Source the .env file
+
+```
+source .env
+```
+
+Make sure there are no spaces in the .env file for the source command to work correctly
 
 ### Set publish url
 
