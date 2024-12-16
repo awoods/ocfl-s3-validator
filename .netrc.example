@@ -1,0 +1,3 @@
+machine artifactory.huit.harvard.edu
+login FILL_IN_ARTIFACTORY_USERNAME
+password FILL_IN_ARTIFACTORY_TOKEN

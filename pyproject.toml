@@ -17,3 +17,6 @@ build-backend = "hatchling.build"
 
 [tool.uv]
 publish-url = "https://artifactory.huit.harvard.edu/artifactory/api/pypi/lts-python"
+# This prevents `uv publish` from overwriting existing versions with non-identical files
+# See: https://docs.astral.sh/uv/reference/settings/#check-url
+check-url = "https://artifactory.huit.harvard.edu/artifactory/api/pypi/lts-python/simple"
