@@ -125,7 +125,7 @@ Select the lts-python repository
 
 Generate a token
 
-### Set environment variables
+### Set environment variables and Artifactory authentication
 
 Update the .env file
 
@@ -136,13 +136,24 @@ UV_PUBLISH_USERNAME={artifactory username}
 UV_PUBLISH_PASSWORD={token generated in JFrog Artifactory}
 ```
 
+Next, update the `.netrc` file with the same credentials:
+
+```
+login {artifactory username}
+password {token generated in JFrog Artifactory}
+```
+
+Source the .env file
+
 Source the .env file
 
 ```
-source .env
+set -a && source .env && set +a
 ```
 
 Make sure there are no spaces in the .env file for the source command to work correctly
+
+**Important: Run `env` to list all of the variables to sure the variables are being set correctly**
 
 ### Set publish url
 
