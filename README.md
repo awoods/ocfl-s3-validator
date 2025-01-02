@@ -161,7 +161,13 @@ https://docs.astral.sh/uv/reference/settings/#publish-url
 
 **Important: Make sure to delete old builds from the `dist/` folder or the publish will not work**
 
-run the uv publish command with the settings in `pyproject.toml`.
+Run the uv sync command to make sure the uv.lock file is updated with the latest changes.
+
+```
+uv sync
+```
+
+Run the uv publish command with the settings in `pyproject.toml`.
 
 ```
 uv publish
