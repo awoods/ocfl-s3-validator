@@ -145,8 +145,6 @@ password {token generated in JFrog Artifactory}
 
 Source the .env file
 
-Source the .env file
-
 ```
 set -a && source .env && set +a
 ```
