@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [tool.uv.workspace]
-members = ["python-package-template"]
+members = ["python_package_template"]
 
 [build-system]
 requires = ["hatchling"]
