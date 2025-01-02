@@ -179,6 +179,8 @@ Optionally, to publish to a different repository, run the uv publish command and
 uv publish --publish-url=https://artifactory.huit.harvard.edu/artifactory/api/pypi/lts-python
 ```
 
+Note: The first time the package is published and error message may appear that the check-url could not be queried because the package does not exist. If this is the case, comment out check-url, publish the package, and then add it back in for later use.
+
 ### Installation
 
 Set the installation environment variables when installing from JFrog Artifactory.
