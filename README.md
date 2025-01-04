@@ -183,6 +183,8 @@ Note: The first time the package is published and error message may appear that 
 
 ### Installation
 
+Read the instructions in the [python-package-demo](https://github.com/harvard-lts/python-package-demo) repository to install the package in another project.
+
 Set the installation environment variables when installing from JFrog Artifactory.
 
 https://github.com/astral-sh/uv/issues/8518
