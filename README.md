@@ -2,6 +2,12 @@
 
 A python packaging template to create new python packages
 
+# Packaging
+
+Read the instructions in the [LTS python package template](https://github.com/harvard-lts/python-package-template) for more information on how to build and publish python packages.
+
+**Keep the link to the Packaging instructions above and replace everything below with specific app details**
+
 ## Installation
 
 ### Install uv package manager
@@ -182,6 +188,8 @@ uv publish --publish-url=https://artifactory.huit.harvard.edu/artifactory/api/py
 Note: The first time the package is published and error message may appear that the check-url could not be queried because the package does not exist. If this is the case, comment out check-url, publish the package, and then add it back in for later use.
 
 ### Installation
+
+Read the instructions in the [python-package-demo](https://github.com/harvard-lts/python-package-demo) repository to install the package in another project.
 
 Set the installation environment variables when installing from JFrog Artifactory.
 
