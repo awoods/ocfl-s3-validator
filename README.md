@@ -2,6 +2,12 @@
 
 A python packaging template to create new python packages
 
+# Packaging
+
+Read the instructions in the [LTS python package template](https://github.com/harvard-lts/python-package-template) for more information on how to build and publish python packages.
+
+**Keep the link to the Packaging instructions above and replace everything below with specific app details**
+
 ## Installation
 
 ### Install uv package manager
