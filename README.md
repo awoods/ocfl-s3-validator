@@ -8,9 +8,21 @@ Read the instructions in the [LTS python package template](https://github.com/ha
 
 **Keep the link to the Packaging instructions above and replace everything below with specific app details**
 
-## Installation
+# Quick start
 
-### Install uv package manager
+A quick set of commands to run after initial setup is complete.
+
+```
+uv venv --python 3.12.0
+source .venv/bin/activate
+set -a && source .env && set +a
+uv build
+uv publish
+```
+
+# Installation
+
+## Install uv package manager
 
 https://docs.astral.sh/uv/
 
