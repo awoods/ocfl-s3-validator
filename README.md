@@ -32,7 +32,7 @@ https://docs.astral.sh/uv/reference/settings/#publish-url
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Install python
+## Install python
 
 Install a specific python version on your local machine, if not installed already. Optionally, the `uv` package allows for installing multiple python versions.
 
@@ -46,7 +46,7 @@ To view python installations run uv list.
 uv python list
 ```
 
-### Virtual environment
+## Virtual environment
 
 Create a new virtual environment with a specific python version.
 
@@ -60,7 +60,7 @@ Activate the virtual environment
 source .venv/bin/activate
 ```
 
-### Add dependencies
+## Add dependencies
 
 Run the `uv add` command to add dependencies to the project.
 
@@ -78,7 +78,7 @@ uv run ruff check
 
 Read more about [managing dependencies in the documentation](https://docs.astral.sh/uv/guides/projects/#managing-dependencies).
 
-### Test modules locally
+## Test modules locally
 
 Activate a virtual environment using the instructions above.
 
@@ -113,7 +113,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 Hello from python-package-template!
 ```
 
-### Project structure
+## Project structure
 
 Read more about the [project structure in the documentation](https://docs.astral.sh/uv/guides/projects/#project-structure).
 
