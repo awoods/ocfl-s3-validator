@@ -8,9 +8,21 @@ Read the instructions in the [LTS python package template](https://github.com/ha
 
 **Keep the link to the Packaging instructions above and replace everything below with specific app details**
 
-## Installation
+# Quick start
 
-### Install uv package manager
+A quick set of commands to run after initial setup is complete.
+
+```
+uv venv --python 3.12.0
+source .venv/bin/activate
+set -a && source .env && set +a
+uv build
+uv publish
+```
+
+# Installation
+
+## Install uv package manager
 
 https://docs.astral.sh/uv/
 
@@ -20,7 +32,7 @@ https://docs.astral.sh/uv/reference/settings/#publish-url
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Install python
+## Install python
 
 Install a specific python version on your local machine, if not installed already. Optionally, the `uv` package allows for installing multiple python versions.
 
@@ -34,7 +46,7 @@ To view python installations run uv list.
 uv python list
 ```
 
-### Virtual environment
+## Virtual environment
 
 Create a new virtual environment with a specific python version.
 
@@ -48,7 +60,7 @@ Activate the virtual environment
 source .venv/bin/activate
 ```
 
-### Add dependencies
+## Add dependencies
 
 Run the `uv add` command to add dependencies to the project.
 
@@ -66,7 +78,7 @@ uv run ruff check
 
 Read more about [managing dependencies in the documentation](https://docs.astral.sh/uv/guides/projects/#managing-dependencies).
 
-### Test modules locally
+## Test modules locally
 
 Activate a virtual environment using the instructions above.
 
@@ -101,7 +113,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 Hello from python-package-template!
 ```
 
-### Project structure
+## Project structure
 
 Read more about the [project structure in the documentation](https://docs.astral.sh/uv/guides/projects/#project-structure).
 
