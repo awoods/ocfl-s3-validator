@@ -16,8 +16,19 @@ A quick set of commands to run after initial setup is complete.
 uv venv --python 3.12.0
 source .venv/bin/activate
 set -a && source .env && set +a
+uv sync
 uv build
 uv publish
+```
+
+**Note: Remove older versions from the local `./dist/` directory before attempting to publish.**
+
+## Tests
+
+To run the unit tests, run the pytest command in the virtual environment.
+
+```
+pytest
 ```
 
 # Installation
