@@ -8,35 +8,48 @@ class TestObjectValidator:
 
     @pytest.fixture(autouse=True)
     def clear_env_vars(monkeypatch):
-        """Automatically clear specific environment variables after each test."""
+        """
+        Automatically clear specific environment variables after each test.
+        """
         yield  # Run the test first
         os.environ.pop("AWS_ACCESS_KEY_ID", None)
         os.environ.pop("AWS_SECRET_ACCESS_KEY", None)
         os.environ.pop("AWS_ENDPOINT_URL", None)
-    
+
     def test_valid(self):
-        validator = ObjectValidator("bucket", "access-key", "secret-key", "endpoint-url")
+        validator = ObjectValidator("bucket",
+                                    "access-key",
+                                    "secret-key",
+                                    "endpoint-url")
 
         # Mock the validate method
         validator.ocfl_validator.validate = MagicMock(return_value=True)
-        
+
         result = validator.validate("id", "path")
         assert result.validation_status, "'result' should be 'true'"
-        validator.ocfl_validator.validate.assert_called_once_with("s3://bucket/path")
+        validator.ocfl_validator.validate.assert_called_once_with(
+            "s3://bucket/path")
 
     def test_invalid(self):
-        validator = ObjectValidator("bucket", "access-key", "secret-key", "endpoint-url")
+        validator = ObjectValidator("bucket",
+                                    "access-key",
+                                    "secret-key",
+                                    "endpoint-url")
 
         # Mock the validate method
         validator.ocfl_validator.validate = MagicMock(return_value=False)
 
         result = validator.validate("id", "path")
         assert not result.validation_status, "'result' should be 'false'"
-        validator.ocfl_validator.validate.assert_called_once_with("s3://bucket/path")
+        validator.ocfl_validator.validate.assert_called_once_with(
+            "s3://bucket/path")
 
     def test_init_success(self):
         with patch('ocfl.Validator') as MockValidator:
-            validator = ObjectValidator("bucket-name", "access-key", "secret-key", "endpoint-url")
+            validator = ObjectValidator("bucket-name",
+                                        "access-key",
+                                        "secret-key",
+                                        "endpoint-url")
             assert validator.bucket_name == "bucket-name"
             assert validator.ocfl_validator == MockValidator.return_value
             assert os.environ['AWS_ACCESS_KEY_ID'] == "access-key"
@@ -45,7 +58,9 @@ class TestObjectValidator:
 
     def test_init_success_no_endpoint(self):
         with patch('ocfl.Validator') as MockValidator:
-            validator = ObjectValidator("bucket-name", "access-key", "secret-key")
+            validator = ObjectValidator("bucket-name",
+                                        "access-key",
+                                        "secret-key")
             assert validator.bucket_name == "bucket-name"
             assert validator.ocfl_validator == MockValidator.return_value
             assert os.environ['AWS_ACCESS_KEY_ID'] == "access-key"

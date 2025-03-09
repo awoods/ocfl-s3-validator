@@ -6,9 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "ocfl-py>=1.3.0",
-    "pytest>=8.3.5",
     "python-dotenv>=1.0.1",
-    "ruff>=0.9.10",
 ]
 
 [tool.uv.workspace]
@@ -27,3 +25,12 @@ build-backend = "hatchling.build"
 # When publishing to Test PyPI, uncomment the following lines
 #[tool.uv]
 #publish-url = "https://test.pypi.org/legacy/"
+
+[dependency-groups]
+dev = [
+    "coverage>=7.6.12",
+    "pytest-cov>=6.0.0",
+    "pytest>=8.3.4",
+    "ruff>=0.9.4",
+    "pytest-mock>=3.14.0",
+]

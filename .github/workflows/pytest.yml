@@ -1,0 +1,87 @@
+name: Unit Tests
+
+on:
+  # Don't trigger this on changes to the badge destination branch
+  push:
+    branches-ignore:
+      - badges/test-coverage
+  pull_request:
+    branches-ignore:
+      - badges/test-coverage
+
+jobs:
+  build:
+    name: Pytest with coverage
+    runs-on:
+      group: huit-arc
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Switch to Current Branch
+        run: git checkout ${{ env.BRANCH }}
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+ 
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml" 
+
+      - name: Install the project
+        run: uv sync --all-extras --dev
+
+      - name: Run flake8
+        run: | 
+          uv pip install flake8
+          # stop the build if there are flake8 errors
+          uv run flake8 . --count --show-source --statistics
+
+      - name: Run unit tests
+        run: uv run pytest
+      
+      - name: Run coverage
+        run: |
+          uv run pytest --cov
+          uv run coverage report -m --skip-covered
+          uv run coverage json
+
+      - name: "Combine"
+        run: |
+          export TOTAL=$(python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])")
+          echo "total=$TOTAL" >> $GITHUB_ENV
+          echo "### Total coverage: ${TOTAL}%" >> $GITHUB_STEP_SUMMARY
+
+      # Queries the shields.io API to create a static SVG to embed
+      - name: Make static badge SVG
+        run: |
+          # saturation of 0 = red, 120 = green, this finds a midpoint based on coverage
+          saturation=$(( (120 * 100) / $total ))
+          # pull SVG from shields.io - unencoded format will be "Coverage-$total%-hsl($saturation,100%,35%)"
+          curl -o coverage.svg "https://img.shields.io/badge/Coverage-$total%25-hsl($saturation,100%25,35%25)"
+
+      # Creates a Git orphan branch, commits only the SVG and force overwrites any existing branch
+      # Branch will be called "badges/test-coverage"
+      # The embeddable SVG will be at: https://{GITHUB_HOSTNAME}/{GITHUB_ORG}/{REPO_NAME}/raw/badges/test-coverage/coverage.svg
+      - name: Commit coverage
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git checkout --orphan badges/test-coverage
+          # remove all files except the coverage badge from Git staging
+          git rm --cached -rf .
+
+          # Re-add and just commit the coverage badge and a new README
+          echo '# Test Coverage Badge Assets' > README.md
+          echo 'This branch is used to store the test coverage badge for the repository.' >> README.md
+          echo "The commit this badge references is: $GITHUB_SHA" >> README.md
+          git add coverage.svg README.md
+
+          git commit -m "Add coverage badge for commit: $GITHUB_SHA"
+          git push --force origin badges/test-coverage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
