@@ -1,5 +1,7 @@
 # OCFL S3 Validator
 
+<a href="https://github.com/harvard-lts/ocfl-s3-validator/actions/workflows/test-suite.yml"><img src="https://github.com/harvard-lts/ocfl-s3-validator/raw/badges/test-coverage/coverage.svg"></a>
+
 A Python OCFL Object validator for content in S3.
 
 This validator is a simple wrapper for one small part of the Python OCFL validation utility: [ocfl-py](https://github.com/zimeon/ocfl-py). 
