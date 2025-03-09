@@ -1,0 +1,20 @@
+github-actions
+** flake8
+** pytest
+** coverage badge
+publish to pypi
+
+h1. Publish to test.pypi
+# Note: credentials in ~/.pypirc
+# Update pyproject.toml:
+[tool.uv]
+publish-url = "https://test.pypi.org/legacy/"
+
+rm -rf dist/
+uv sync
+uv build
+uv publish
+
+
+# Testing publication: Install test.pypi module with other dependencies
+uv pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple ocfl-s3-validator==0.1.0a

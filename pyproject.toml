@@ -1,22 +1,29 @@
 [project]
-name = "python-package-template"
-version = "0.1.0"
-description = "Add your description here"
+name = "ocfl-s3-validator"
+version = "0.1.1"
+description = "A Python OCFL Object validator for content in S3"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 dependencies = [
-    "ruff>=0.8.3",
+    "ocfl-py>=1.3.0",
+    "pytest>=8.3.5",
+    "python-dotenv>=1.0.1",
+    "ruff>=0.9.10",
 ]
 
 [tool.uv.workspace]
-members = ["python_package_template"]
+members = ["ocfl_s3_validator"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".", "src"
+]
+filterwarnings = "ignore::DeprecationWarning"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-publish-url = "https://artifactory.huit.harvard.edu/artifactory/api/pypi/lts-python"
-# This prevents `uv publish` from overwriting existing versions with non-identical files
-# See: https://docs.astral.sh/uv/reference/settings/#check-url
-check-url = "https://artifactory.huit.harvard.edu/artifactory/api/pypi/lts-python/simple"
+# When publishing to Test PyPI, uncomment the following lines
+#[tool.uv]
+#publish-url = "https://test.pypi.org/legacy/"
