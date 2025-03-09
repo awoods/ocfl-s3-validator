@@ -167,3 +167,5 @@ cython_debug/
 # Local
 *~
 *.swp
+notes.txt
+
