@@ -12,8 +12,7 @@ on:
 jobs:
   build:
     name: Pytest with coverage
-    runs-on:
-      group: huit-arc
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
